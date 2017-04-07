@@ -1,0 +1,32 @@
+
+
+<launch>
+<!-- Start tilt joint controller -->
+	<rosparam file="$(find arm_dynamixel)/tilt.yaml" command="load"/>
+	<node name="controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
+	      args="--manager=dxl_manager --port pan_tilt_port joint1_controller joint2_controller joint3_controller"
+	      output="screen"/>
+
+<!-- Start joints trajectory controller controller -->
+	<rosparam file="$(find arm_dynamixel)/joints_trajectory_controller.yaml" command="load"/>
+	<node name="controller_spawner_meta" pkg="dynamixel_controllers" type="controller_spawner.py"
+	      args="--manager=dxl_manager
+		    --type=meta
+		    arm_controller
+		    joint1_controller
+		    joint2_controller
+		    joint3_controller
+		    "
+	output="screen"/>
+
+
+<!-- Publish arm data -->
+	<include file="$(find arm_dynamixel)/launch/joint_state_aggregator.launch"/>
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" output="screen">
+		<rosparam param="source_list">[joint_states]</rosparam>
+		<rosparam param="use_gui">FALSE</rosparam>
+	</node>
+
+
+
+</launch>

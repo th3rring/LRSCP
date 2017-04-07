@@ -1,0 +1,6 @@
+controller_list:
+  - name: fake_arm_controller
+    joints:
+      - bottom_yaw
+      - middle_pitch
+      - top_pitch

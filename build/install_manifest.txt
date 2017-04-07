@@ -1,0 +1,6 @@
+/home/ubuntu/dev/lrscp_ws/install/_setup_util.py
+/home/ubuntu/dev/lrscp_ws/install/env.sh
+/home/ubuntu/dev/lrscp_ws/install/setup.bash
+/home/ubuntu/dev/lrscp_ws/install/setup.sh
+/home/ubuntu/dev/lrscp_ws/install/setup.zsh
+/home/ubuntu/dev/lrscp_ws/install/.rosinstall

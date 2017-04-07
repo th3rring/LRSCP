@@ -1,0 +1,2 @@
+arm_dynamixel:arm_moveit_config
+-DCATKIN_DEVEL_PREFIX=/home/ubuntu/dev/lrscp_ws/devel -DCMAKE_INSTALL_PREFIX=/home/ubuntu/dev/lrscp_ws/install -G Unix Makefiles
