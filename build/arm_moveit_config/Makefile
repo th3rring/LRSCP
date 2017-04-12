@@ -56,6 +56,18 @@ CMAKE_BINARY_DIR = /home/ubuntu/dev/lrscp_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -66,6 +78,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -88,29 +111,6 @@ list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
-
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
@@ -122,16 +122,16 @@ install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
 
-# Special rule for the target test
-test/fast: test
+# Special rule for the target install/local
+install/local/fast: install/local
 
-.PHONY : test/fast
+.PHONY : install/local/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,19 +166,151 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-arm_moveit_config/CMakeFiles/_catkin_empty_exported_target.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_moveit_config/CMakeFiles/_catkin_empty_exported_target.dir/rule
-.PHONY : arm_moveit_config/CMakeFiles/_catkin_empty_exported_target.dir/rule
+arm_moveit_config/CMakeFiles/moveit_ros_planning_gencfg.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_moveit_config/CMakeFiles/moveit_ros_planning_gencfg.dir/rule
+.PHONY : arm_moveit_config/CMakeFiles/moveit_ros_planning_gencfg.dir/rule
 
 # Convenience name for target.
-_catkin_empty_exported_target: arm_moveit_config/CMakeFiles/_catkin_empty_exported_target.dir/rule
+moveit_ros_planning_gencfg: arm_moveit_config/CMakeFiles/moveit_ros_planning_gencfg.dir/rule
 
-.PHONY : _catkin_empty_exported_target
+.PHONY : moveit_ros_planning_gencfg
 
 # fast build rule for target.
-_catkin_empty_exported_target/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_moveit_config/CMakeFiles/_catkin_empty_exported_target.dir/build.make arm_moveit_config/CMakeFiles/_catkin_empty_exported_target.dir/build
-.PHONY : _catkin_empty_exported_target/fast
+moveit_ros_planning_gencfg/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_moveit_config/CMakeFiles/moveit_ros_planning_gencfg.dir/build.make arm_moveit_config/CMakeFiles/moveit_ros_planning_gencfg.dir/build
+.PHONY : moveit_ros_planning_gencfg/fast
+
+# Convenience name for target.
+arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_lisp.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_lisp.dir/rule
+.PHONY : arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+graph_msgs_generate_messages_lisp: arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : graph_msgs_generate_messages_lisp
+
+# fast build rule for target.
+graph_msgs_generate_messages_lisp/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_lisp.dir/build.make arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_lisp.dir/build
+.PHONY : graph_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_eus.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_eus.dir/rule
+.PHONY : arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+graph_msgs_generate_messages_eus: arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_eus.dir/rule
+
+.PHONY : graph_msgs_generate_messages_eus
+
+# fast build rule for target.
+graph_msgs_generate_messages_eus/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_eus.dir/build.make arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_eus.dir/build
+.PHONY : graph_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+arm_moveit_config/CMakeFiles/moveit_ros_manipulation_gencfg.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_moveit_config/CMakeFiles/moveit_ros_manipulation_gencfg.dir/rule
+.PHONY : arm_moveit_config/CMakeFiles/moveit_ros_manipulation_gencfg.dir/rule
+
+# Convenience name for target.
+moveit_ros_manipulation_gencfg: arm_moveit_config/CMakeFiles/moveit_ros_manipulation_gencfg.dir/rule
+
+.PHONY : moveit_ros_manipulation_gencfg
+
+# fast build rule for target.
+moveit_ros_manipulation_gencfg/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_moveit_config/CMakeFiles/moveit_ros_manipulation_gencfg.dir/build.make arm_moveit_config/CMakeFiles/moveit_ros_manipulation_gencfg.dir/build
+.PHONY : moveit_ros_manipulation_gencfg/fast
+
+# Convenience name for target.
+arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_py.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_py.dir/rule
+.PHONY : arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+graph_msgs_generate_messages_py: arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_py.dir/rule
+
+.PHONY : graph_msgs_generate_messages_py
+
+# fast build rule for target.
+graph_msgs_generate_messages_py/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_py.dir/build.make arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_py.dir/build
+.PHONY : graph_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_cpp.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_cpp.dir/rule
+.PHONY : arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+graph_msgs_generate_messages_cpp: arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : graph_msgs_generate_messages_cpp
+
+# fast build rule for target.
+graph_msgs_generate_messages_cpp/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_cpp.dir/build.make arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_cpp.dir/build
+.PHONY : graph_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_nodejs.dir/rule
+.PHONY : arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+graph_msgs_generate_messages_nodejs: arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : graph_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+graph_msgs_generate_messages_nodejs/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_nodejs.dir/build.make arm_moveit_config/CMakeFiles/graph_msgs_generate_messages_nodejs.dir/build
+.PHONY : graph_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+arm_moveit_config/CMakeFiles/move_group_interface.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_moveit_config/CMakeFiles/move_group_interface.dir/rule
+.PHONY : arm_moveit_config/CMakeFiles/move_group_interface.dir/rule
+
+# Convenience name for target.
+move_group_interface: arm_moveit_config/CMakeFiles/move_group_interface.dir/rule
+
+.PHONY : move_group_interface
+
+# fast build rule for target.
+move_group_interface/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_moveit_config/CMakeFiles/move_group_interface.dir/build.make arm_moveit_config/CMakeFiles/move_group_interface.dir/build
+.PHONY : move_group_interface/fast
+
+src/move_group_interface.o: src/move_group_interface.cpp.o
+
+.PHONY : src/move_group_interface.o
+
+# target to build an object file
+src/move_group_interface.cpp.o:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_moveit_config/CMakeFiles/move_group_interface.dir/build.make arm_moveit_config/CMakeFiles/move_group_interface.dir/src/move_group_interface.cpp.o
+.PHONY : src/move_group_interface.cpp.o
+
+src/move_group_interface.i: src/move_group_interface.cpp.i
+
+.PHONY : src/move_group_interface.i
+
+# target to preprocess a source file
+src/move_group_interface.cpp.i:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_moveit_config/CMakeFiles/move_group_interface.dir/build.make arm_moveit_config/CMakeFiles/move_group_interface.dir/src/move_group_interface.cpp.i
+.PHONY : src/move_group_interface.cpp.i
+
+src/move_group_interface.s: src/move_group_interface.cpp.s
+
+.PHONY : src/move_group_interface.s
+
+# target to generate assembly for a file
+src/move_group_interface.cpp.s:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_moveit_config/CMakeFiles/move_group_interface.dir/build.make arm_moveit_config/CMakeFiles/move_group_interface.dir/src/move_group_interface.cpp.s
+.PHONY : src/move_group_interface.cpp.s
 
 # Help Target
 help:
@@ -186,14 +318,24 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... list_install_components"
 	@echo "... install"
-	@echo "... _catkin_empty_exported_target"
-	@echo "... install/local"
-	@echo "... install/strip"
+	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... moveit_ros_planning_gencfg"
+	@echo "... graph_msgs_generate_messages_lisp"
+	@echo "... edit_cache"
+	@echo "... graph_msgs_generate_messages_eus"
+	@echo "... moveit_ros_manipulation_gencfg"
+	@echo "... graph_msgs_generate_messages_py"
+	@echo "... graph_msgs_generate_messages_cpp"
+	@echo "... list_install_components"
+	@echo "... install/strip"
+	@echo "... install/local"
+	@echo "... graph_msgs_generate_messages_nodejs"
+	@echo "... move_group_interface"
+	@echo "... src/move_group_interface.o"
+	@echo "... src/move_group_interface.i"
+	@echo "... src/move_group_interface.s"
 .PHONY : help
 
 

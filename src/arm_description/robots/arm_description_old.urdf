@@ -1,0 +1,217 @@
+<robot
+  name="arm_description">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-2.0703E-09 0.00010657 0.024068"
+        rpy="0 0 0" />
+      <mass
+        value="0.17385" />
+      <inertia
+        ixx="0.00010151"
+        ixy="4.9292E-12"
+        ixz="1.2108E-11"
+        iyy="9.4955E-05"
+        iyz="-7.9143E-07"
+        izz="9.7664E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="bottom">
+    <inertial>
+      <origin
+        xyz="-1.7347E-18 -4.3539E-17 0.0088832"
+        rpy="0 0 0" />
+      <mass
+        value="0.011286" />
+      <inertia
+        ixx="4.4212E-06"
+        ixy="-9.6522E-23"
+        ixz="3.0781E-22"
+        iyy="1.6248E-06"
+        iyz="4.6026E-21"
+        izz="4.115E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/meshes/bottom.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/meshes/bottom.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="bottom_yaw"
+    type="revolute">
+    <origin
+      xyz="0 0.013899 0.069385"
+      rpy="0 0 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="bottom" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.7453"
+      upper="1.7453"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="middle">
+    <inertial>
+      <origin
+        xyz="-2.6489E-15 2.9875E-15 0.080094"
+        rpy="0 0 0" />
+      <mass
+        value="0.23594" />
+      <inertia
+        ixx="0.00049554"
+        ixy="-1.4378E-13"
+        ixz="3.2469E-17"
+        iyy="0.00048716"
+        iyz="-3.6528E-17"
+        izz="5.9595E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/meshes/middle.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/meshes/middle.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="middle_pitch"
+    type="revolute">
+    <origin
+      xyz="0 0 0.026416"
+      rpy="0 0 0" />
+    <parent
+      link="bottom" />
+    <child
+      link="middle" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.7453"
+      upper="1.7453"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="top">
+    <inertial>
+      <origin
+        xyz="-1.7347E-18 4.2005E-18 0.085572"
+        rpy="0 0 0" />
+      <mass
+        value="0.25188" />
+      <inertia
+        ixx="0.00060592"
+        ixy="-3.6721E-21"
+        ixz="-8.1194E-23"
+        iyy="0.00060037"
+        iyz="1.3734E-20"
+        izz="5.9624E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/meshes/top.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://arm_description/meshes/top.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="top_pitch"
+    type="revolute">
+    <origin
+      xyz="0 0 0.17312"
+      rpy="0 0 0" />
+    <parent
+      link="middle" />
+    <child
+      link="top" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.7453"
+      upper="1.7453"
+      effort="0"
+      velocity="0" />
+  </joint>
+</robot>

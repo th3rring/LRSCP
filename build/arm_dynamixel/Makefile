@@ -56,28 +56,6 @@ CMAKE_BINARY_DIR = /home/ubuntu/dev/lrscp_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-
-.PHONY : install/strip/fast
-
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -90,16 +68,16 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
 
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
 
-.PHONY : edit_cache/fast
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target list_install_components
 list_install_components:
@@ -110,6 +88,17 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -122,16 +111,27 @@ install/local/fast: install/local
 
 .PHONY : install/local/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
 
-# Special rule for the target test
-test/fast: test
+# Special rule for the target install/strip
+install/strip/fast: install/strip
 
-.PHONY : test/fast
+.PHONY : install/strip/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,64 +166,34 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-arm_dynamixel/CMakeFiles/control_msgs_generate_messages_py.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/control_msgs_generate_messages_py.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/control_msgs_generate_messages_py.dir/rule
+arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/rule
+.PHONY : arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-control_msgs_generate_messages_py: arm_dynamixel/CMakeFiles/control_msgs_generate_messages_py.dir/rule
+trajectory_msgs_generate_messages_eus: arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/rule
 
-.PHONY : control_msgs_generate_messages_py
+.PHONY : trajectory_msgs_generate_messages_eus
 
 # fast build rule for target.
-control_msgs_generate_messages_py/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/control_msgs_generate_messages_py.dir/build.make arm_dynamixel/CMakeFiles/control_msgs_generate_messages_py.dir/build
-.PHONY : control_msgs_generate_messages_py/fast
+trajectory_msgs_generate_messages_eus/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/build.make arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/build
+.PHONY : trajectory_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
-arm_dynamixel/CMakeFiles/control_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/control_msgs_generate_messages_nodejs.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/control_msgs_generate_messages_nodejs.dir/rule
+arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule
+.PHONY : arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-control_msgs_generate_messages_nodejs: arm_dynamixel/CMakeFiles/control_msgs_generate_messages_nodejs.dir/rule
+diagnostic_msgs_generate_messages_nodejs: arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule
 
-.PHONY : control_msgs_generate_messages_nodejs
+.PHONY : diagnostic_msgs_generate_messages_nodejs
 
 # fast build rule for target.
-control_msgs_generate_messages_nodejs/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/control_msgs_generate_messages_nodejs.dir/build.make arm_dynamixel/CMakeFiles/control_msgs_generate_messages_nodejs.dir/build
-.PHONY : control_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/control_msgs_generate_messages_eus.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/control_msgs_generate_messages_eus.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/control_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-control_msgs_generate_messages_eus: arm_dynamixel/CMakeFiles/control_msgs_generate_messages_eus.dir/rule
-
-.PHONY : control_msgs_generate_messages_eus
-
-# fast build rule for target.
-control_msgs_generate_messages_eus/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/control_msgs_generate_messages_eus.dir/build.make arm_dynamixel/CMakeFiles/control_msgs_generate_messages_eus.dir/build
-.PHONY : control_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/control_msgs_generate_messages_cpp.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/control_msgs_generate_messages_cpp.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/control_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-control_msgs_generate_messages_cpp: arm_dynamixel/CMakeFiles/control_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : control_msgs_generate_messages_cpp
-
-# fast build rule for target.
-control_msgs_generate_messages_cpp/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/control_msgs_generate_messages_cpp.dir/build.make arm_dynamixel/CMakeFiles/control_msgs_generate_messages_cpp.dir/build
-.PHONY : control_msgs_generate_messages_cpp/fast
+diagnostic_msgs_generate_messages_nodejs/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/build.make arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/build
+.PHONY : diagnostic_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
 arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_py.dir/rule:
@@ -241,94 +211,49 @@ dynamixel_msgs_generate_messages_py/fast:
 .PHONY : dynamixel_msgs_generate_messages_py/fast
 
 # Convenience name for target.
-arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_nodejs.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_nodejs.dir/rule
+arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/rule
+.PHONY : arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-dynamixel_msgs_generate_messages_nodejs: arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_nodejs.dir/rule
+diagnostic_msgs_generate_messages_eus: arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/rule
 
-.PHONY : dynamixel_msgs_generate_messages_nodejs
+.PHONY : diagnostic_msgs_generate_messages_eus
 
 # fast build rule for target.
-dynamixel_msgs_generate_messages_nodejs/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_nodejs.dir/build.make arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_nodejs.dir/build
-.PHONY : dynamixel_msgs_generate_messages_nodejs/fast
+diagnostic_msgs_generate_messages_eus/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/build.make arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/build
+.PHONY : diagnostic_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
-arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_lisp.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_lisp.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_lisp.dir/rule
+arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_py.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_py.dir/rule
+.PHONY : arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-dynamixel_msgs_generate_messages_lisp: arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_lisp.dir/rule
+trajectory_msgs_generate_messages_py: arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_py.dir/rule
 
-.PHONY : dynamixel_msgs_generate_messages_lisp
+.PHONY : trajectory_msgs_generate_messages_py
 
 # fast build rule for target.
-dynamixel_msgs_generate_messages_lisp/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_lisp.dir/build.make arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_lisp.dir/build
-.PHONY : dynamixel_msgs_generate_messages_lisp/fast
+trajectory_msgs_generate_messages_py/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_py.dir/build.make arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_py.dir/build
+.PHONY : trajectory_msgs_generate_messages_py/fast
 
 # Convenience name for target.
-arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_eus.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_eus.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_eus.dir/rule
+arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/rule
+.PHONY : arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-dynamixel_msgs_generate_messages_eus: arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_eus.dir/rule
+diagnostic_msgs_generate_messages_cpp: arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : dynamixel_msgs_generate_messages_eus
+.PHONY : diagnostic_msgs_generate_messages_cpp
 
 # fast build rule for target.
-dynamixel_msgs_generate_messages_eus/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_eus.dir/build.make arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_eus.dir/build
-.PHONY : dynamixel_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/std_msgs_generate_messages_eus.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_eus: arm_dynamixel/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-
-.PHONY : std_msgs_generate_messages_eus
-
-# fast build rule for target.
-std_msgs_generate_messages_eus/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make arm_dynamixel/CMakeFiles/std_msgs_generate_messages_eus.dir/build
-.PHONY : std_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_py.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_py.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_py.dir/rule
-
-# Convenience name for target.
-dynamixel_controllers_generate_messages_py: arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_py.dir/rule
-
-.PHONY : dynamixel_controllers_generate_messages_py
-
-# fast build rule for target.
-dynamixel_controllers_generate_messages_py/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_py.dir/build.make arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_py.dir/build
-.PHONY : dynamixel_controllers_generate_messages_py/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_lisp: arm_dynamixel/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-.PHONY : roscpp_generate_messages_lisp
-
-# fast build rule for target.
-roscpp_generate_messages_lisp/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make arm_dynamixel/CMakeFiles/roscpp_generate_messages_lisp.dir/build
-.PHONY : roscpp_generate_messages_lisp/fast
+diagnostic_msgs_generate_messages_cpp/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/build.make arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/build
+.PHONY : diagnostic_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
 arm_dynamixel/CMakeFiles/actionlib_msgs_generate_messages_py.dir/rule:
@@ -344,21 +269,6 @@ actionlib_msgs_generate_messages_py: arm_dynamixel/CMakeFiles/actionlib_msgs_gen
 actionlib_msgs_generate_messages_py/fast:
 	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build.make arm_dynamixel/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build
 .PHONY : actionlib_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_cpp: arm_dynamixel/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-.PHONY : roscpp_generate_messages_cpp
-
-# fast build rule for target.
-roscpp_generate_messages_cpp/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make arm_dynamixel/CMakeFiles/roscpp_generate_messages_cpp.dir/build
-.PHONY : roscpp_generate_messages_cpp/fast
 
 # Convenience name for target.
 arm_dynamixel/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule:
@@ -406,79 +316,19 @@ actionlib_generate_messages_cpp/fast:
 .PHONY : actionlib_generate_messages_cpp/fast
 
 # Convenience name for target.
-arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_nodejs.dir/rule
+.PHONY : arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+dynamixel_msgs_generate_messages_nodejs: arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_nodejs.dir/rule
 
-.PHONY : rosgraph_msgs_generate_messages_cpp
+.PHONY : dynamixel_msgs_generate_messages_nodejs
 
 # fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-diagnostic_msgs_generate_messages_eus: arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/rule
-
-.PHONY : diagnostic_msgs_generate_messages_eus
-
-# fast build rule for target.
-diagnostic_msgs_generate_messages_eus/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/build.make arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/build
-.PHONY : diagnostic_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_py.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_py.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-trajectory_msgs_generate_messages_py: arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_py.dir/rule
-
-.PHONY : trajectory_msgs_generate_messages_py
-
-# fast build rule for target.
-trajectory_msgs_generate_messages_py/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_py.dir/build.make arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_py.dir/build
-.PHONY : trajectory_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_lisp: arm_dynamixel/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : std_msgs_generate_messages_lisp
-
-# fast build rule for target.
-std_msgs_generate_messages_lisp/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make arm_dynamixel/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-.PHONY : std_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_lisp: arm_dynamixel/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_lisp
-
-# fast build rule for target.
-geometry_msgs_generate_messages_lisp/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make arm_dynamixel/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
-.PHONY : geometry_msgs_generate_messages_lisp/fast
+dynamixel_msgs_generate_messages_nodejs/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_nodejs.dir/build.make arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_nodejs.dir/build
+.PHONY : dynamixel_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
 arm_dynamixel/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/rule:
@@ -496,64 +346,19 @@ actionlib_msgs_generate_messages_lisp/fast:
 .PHONY : actionlib_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
-arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_nodejs.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_nodejs.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_nodejs.dir/rule
+arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule
+.PHONY : arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-dynamixel_controllers_generate_messages_nodejs: arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_nodejs.dir/rule
+diagnostic_msgs_generate_messages_lisp: arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule
 
-.PHONY : dynamixel_controllers_generate_messages_nodejs
+.PHONY : diagnostic_msgs_generate_messages_lisp
 
 # fast build rule for target.
-dynamixel_controllers_generate_messages_nodejs/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_nodejs.dir/build.make arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_nodejs.dir/build
-.PHONY : dynamixel_controllers_generate_messages_nodejs/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_py: arm_dynamixel/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-.PHONY : std_msgs_generate_messages_py
-
-# fast build rule for target.
-std_msgs_generate_messages_py/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/std_msgs_generate_messages_py.dir/build.make arm_dynamixel/CMakeFiles/std_msgs_generate_messages_py.dir/build
-.PHONY : std_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_cpp.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_cpp.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-dynamixel_controllers_generate_messages_cpp: arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_cpp.dir/rule
-
-.PHONY : dynamixel_controllers_generate_messages_cpp
-
-# fast build rule for target.
-dynamixel_controllers_generate_messages_cpp/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_cpp.dir/build.make arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_cpp.dir/build
-.PHONY : dynamixel_controllers_generate_messages_cpp/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_eus.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_eus.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-dynamixel_controllers_generate_messages_eus: arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_eus.dir/rule
-
-.PHONY : dynamixel_controllers_generate_messages_eus
-
-# fast build rule for target.
-dynamixel_controllers_generate_messages_eus/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_eus.dir/build.make arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_eus.dir/build
-.PHONY : dynamixel_controllers_generate_messages_eus/fast
+diagnostic_msgs_generate_messages_lisp/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/build.make arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/build
+.PHONY : diagnostic_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
 arm_dynamixel/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
@@ -571,49 +376,34 @@ geometry_msgs_generate_messages_py/fast:
 .PHONY : geometry_msgs_generate_messages_py/fast
 
 # Convenience name for target.
-arm_dynamixel/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_eus.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_eus.dir/rule
+.PHONY : arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_eus.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_nodejs: arm_dynamixel/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+dynamixel_controllers_generate_messages_eus: arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_eus.dir/rule
 
-.PHONY : std_msgs_generate_messages_nodejs
+.PHONY : dynamixel_controllers_generate_messages_eus
 
 # fast build rule for target.
-std_msgs_generate_messages_nodejs/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make arm_dynamixel/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
-.PHONY : std_msgs_generate_messages_nodejs/fast
+dynamixel_controllers_generate_messages_eus/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_eus.dir/build.make arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_eus.dir/build
+.PHONY : dynamixel_controllers_generate_messages_eus/fast
 
 # Convenience name for target.
-arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/rule
+arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule
+.PHONY : arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-trajectory_msgs_generate_messages_eus: arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/rule
+diagnostic_msgs_generate_messages_py: arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule
 
-.PHONY : trajectory_msgs_generate_messages_eus
+.PHONY : diagnostic_msgs_generate_messages_py
 
 # fast build rule for target.
-trajectory_msgs_generate_messages_eus/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/build.make arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_eus.dir/build
-.PHONY : trajectory_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_cpp: arm_dynamixel/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : std_msgs_generate_messages_cpp
-
-# fast build rule for target.
-std_msgs_generate_messages_cpp/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make arm_dynamixel/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
-.PHONY : std_msgs_generate_messages_cpp/fast
+diagnostic_msgs_generate_messages_py/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/build.make arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/build
+.PHONY : diagnostic_msgs_generate_messages_py/fast
 
 # Convenience name for target.
 arm_dynamixel/CMakeFiles/actionlib_generate_messages_nodejs.dir/rule:
@@ -646,19 +436,34 @@ actionlib_msgs_generate_messages_cpp/fast:
 .PHONY : actionlib_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
-arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_cpp.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_cpp.dir/rule
+.PHONY : arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_nodejs: arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+dynamixel_controllers_generate_messages_cpp: arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_cpp.dir/rule
 
-.PHONY : rosgraph_msgs_generate_messages_nodejs
+.PHONY : dynamixel_controllers_generate_messages_cpp
 
 # fast build rule for target.
-rosgraph_msgs_generate_messages_nodejs/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
-.PHONY : rosgraph_msgs_generate_messages_nodejs/fast
+dynamixel_controllers_generate_messages_cpp/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_cpp.dir/build.make arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_cpp.dir/build
+.PHONY : dynamixel_controllers_generate_messages_cpp/fast
+
+# Convenience name for target.
+arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_py.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_py.dir/rule
+.PHONY : arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_py.dir/rule
+
+# Convenience name for target.
+dynamixel_controllers_generate_messages_py: arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_py.dir/rule
+
+.PHONY : dynamixel_controllers_generate_messages_py
+
+# fast build rule for target.
+dynamixel_controllers_generate_messages_py/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_py.dir/build.make arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_py.dir/build
+.PHONY : dynamixel_controllers_generate_messages_py/fast
 
 # Convenience name for target.
 arm_dynamixel/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/rule:
@@ -691,6 +496,21 @@ actionlib_generate_messages_lisp/fast:
 .PHONY : actionlib_generate_messages_lisp/fast
 
 # Convenience name for target.
+arm_dynamixel/CMakeFiles/joint_state_aggregator.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/joint_state_aggregator.dir/rule
+.PHONY : arm_dynamixel/CMakeFiles/joint_state_aggregator.dir/rule
+
+# Convenience name for target.
+joint_state_aggregator: arm_dynamixel/CMakeFiles/joint_state_aggregator.dir/rule
+
+.PHONY : joint_state_aggregator
+
+# fast build rule for target.
+joint_state_aggregator/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/joint_state_aggregator.dir/build.make arm_dynamixel/CMakeFiles/joint_state_aggregator.dir/build
+.PHONY : joint_state_aggregator/fast
+
+# Convenience name for target.
 arm_dynamixel/CMakeFiles/actionlib_generate_messages_eus.dir/rule:
 	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/actionlib_generate_messages_eus.dir/rule
 .PHONY : arm_dynamixel/CMakeFiles/actionlib_generate_messages_eus.dir/rule
@@ -706,34 +526,19 @@ actionlib_generate_messages_eus/fast:
 .PHONY : actionlib_generate_messages_eus/fast
 
 # Convenience name for target.
-arm_dynamixel/CMakeFiles/roscpp_generate_messages_py.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/roscpp_generate_messages_py.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/roscpp_generate_messages_py.dir/rule
+arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_lisp.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_lisp.dir/rule
+.PHONY : arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-roscpp_generate_messages_py: arm_dynamixel/CMakeFiles/roscpp_generate_messages_py.dir/rule
+dynamixel_msgs_generate_messages_lisp: arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_lisp.dir/rule
 
-.PHONY : roscpp_generate_messages_py
+.PHONY : dynamixel_msgs_generate_messages_lisp
 
 # fast build rule for target.
-roscpp_generate_messages_py/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/roscpp_generate_messages_py.dir/build.make arm_dynamixel/CMakeFiles/roscpp_generate_messages_py.dir/build
-.PHONY : roscpp_generate_messages_py/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/actionlib_generate_messages_py.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/actionlib_generate_messages_py.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/actionlib_generate_messages_py.dir/rule
-
-# Convenience name for target.
-actionlib_generate_messages_py: arm_dynamixel/CMakeFiles/actionlib_generate_messages_py.dir/rule
-
-.PHONY : actionlib_generate_messages_py
-
-# fast build rule for target.
-actionlib_generate_messages_py/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/actionlib_generate_messages_py.dir/build.make arm_dynamixel/CMakeFiles/actionlib_generate_messages_py.dir/build
-.PHONY : actionlib_generate_messages_py/fast
+dynamixel_msgs_generate_messages_lisp/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_lisp.dir/build.make arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_lisp.dir/build
+.PHONY : dynamixel_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
 arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_lisp.dir/rule:
@@ -751,139 +556,19 @@ dynamixel_controllers_generate_messages_lisp/fast:
 .PHONY : dynamixel_controllers_generate_messages_lisp/fast
 
 # Convenience name for target.
-arm_dynamixel/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+arm_dynamixel/CMakeFiles/actionlib_generate_messages_py.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/actionlib_generate_messages_py.dir/rule
+.PHONY : arm_dynamixel/CMakeFiles/actionlib_generate_messages_py.dir/rule
 
 # Convenience name for target.
-roscpp_generate_messages_nodejs: arm_dynamixel/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+actionlib_generate_messages_py: arm_dynamixel/CMakeFiles/actionlib_generate_messages_py.dir/rule
 
-.PHONY : roscpp_generate_messages_nodejs
+.PHONY : actionlib_generate_messages_py
 
 # fast build rule for target.
-roscpp_generate_messages_nodejs/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make arm_dynamixel/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
-.PHONY : roscpp_generate_messages_nodejs/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_lisp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_eus: arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_eus
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_eus/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
-.PHONY : rosgraph_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-diagnostic_msgs_generate_messages_cpp: arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : diagnostic_msgs_generate_messages_cpp
-
-# fast build rule for target.
-diagnostic_msgs_generate_messages_cpp/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/build.make arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/build
-.PHONY : diagnostic_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_eus: arm_dynamixel/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-.PHONY : roscpp_generate_messages_eus
-
-# fast build rule for target.
-roscpp_generate_messages_eus/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/roscpp_generate_messages_eus.dir/build.make arm_dynamixel/CMakeFiles/roscpp_generate_messages_eus.dir/build
-.PHONY : roscpp_generate_messages_eus/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-diagnostic_msgs_generate_messages_lisp: arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : diagnostic_msgs_generate_messages_lisp
-
-# fast build rule for target.
-diagnostic_msgs_generate_messages_lisp/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/build.make arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/build
-.PHONY : diagnostic_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-diagnostic_msgs_generate_messages_nodejs: arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : diagnostic_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-diagnostic_msgs_generate_messages_nodejs/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/build.make arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_nodejs.dir/build
-.PHONY : diagnostic_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_py: arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_py
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_py/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make arm_dynamixel/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-.PHONY : rosgraph_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-diagnostic_msgs_generate_messages_py: arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule
-
-.PHONY : diagnostic_msgs_generate_messages_py
-
-# fast build rule for target.
-diagnostic_msgs_generate_messages_py/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/build.make arm_dynamixel/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/build
-.PHONY : diagnostic_msgs_generate_messages_py/fast
+actionlib_generate_messages_py/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/actionlib_generate_messages_py.dir/build.make arm_dynamixel/CMakeFiles/actionlib_generate_messages_py.dir/build
+.PHONY : actionlib_generate_messages_py/fast
 
 # Convenience name for target.
 arm_dynamixel/CMakeFiles/control_msgs_generate_messages_lisp.dir/rule:
@@ -916,21 +601,6 @@ trajectory_msgs_generate_messages_lisp/fast:
 .PHONY : trajectory_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
-arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule
-.PHONY : arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-trajectory_msgs_generate_messages_nodejs: arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : trajectory_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-trajectory_msgs_generate_messages_nodejs/fast:
-	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/build.make arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/build
-.PHONY : trajectory_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
 arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule:
 	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule
 .PHONY : arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_cpp.dir/rule
@@ -961,6 +631,21 @@ geometry_msgs_generate_messages_cpp/fast:
 .PHONY : geometry_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
+arm_dynamixel/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+.PHONY : arm_dynamixel/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_lisp: arm_dynamixel/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_lisp
+
+# fast build rule for target.
+geometry_msgs_generate_messages_lisp/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make arm_dynamixel/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
+.PHONY : geometry_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
 arm_dynamixel/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule:
 	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
 .PHONY : arm_dynamixel/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
@@ -974,6 +659,21 @@ geometry_msgs_generate_messages_nodejs: arm_dynamixel/CMakeFiles/geometry_msgs_g
 geometry_msgs_generate_messages_nodejs/fast:
 	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make arm_dynamixel/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
 .PHONY : geometry_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+arm_dynamixel/CMakeFiles/control_msgs_generate_messages_eus.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/control_msgs_generate_messages_eus.dir/rule
+.PHONY : arm_dynamixel/CMakeFiles/control_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+control_msgs_generate_messages_eus: arm_dynamixel/CMakeFiles/control_msgs_generate_messages_eus.dir/rule
+
+.PHONY : control_msgs_generate_messages_eus
+
+# fast build rule for target.
+control_msgs_generate_messages_eus/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/control_msgs_generate_messages_eus.dir/build.make arm_dynamixel/CMakeFiles/control_msgs_generate_messages_eus.dir/build
+.PHONY : control_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
 arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_cpp.dir/rule:
@@ -990,74 +690,180 @@ dynamixel_msgs_generate_messages_cpp/fast:
 	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_cpp.dir/build.make arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_cpp.dir/build
 .PHONY : dynamixel_msgs_generate_messages_cpp/fast
 
+# Convenience name for target.
+arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_eus.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_eus.dir/rule
+.PHONY : arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+dynamixel_msgs_generate_messages_eus: arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_eus.dir/rule
+
+.PHONY : dynamixel_msgs_generate_messages_eus
+
+# fast build rule for target.
+dynamixel_msgs_generate_messages_eus/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_eus.dir/build.make arm_dynamixel/CMakeFiles/dynamixel_msgs_generate_messages_eus.dir/build
+.PHONY : dynamixel_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+arm_dynamixel/CMakeFiles/control_msgs_generate_messages_cpp.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/control_msgs_generate_messages_cpp.dir/rule
+.PHONY : arm_dynamixel/CMakeFiles/control_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+control_msgs_generate_messages_cpp: arm_dynamixel/CMakeFiles/control_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : control_msgs_generate_messages_cpp
+
+# fast build rule for target.
+control_msgs_generate_messages_cpp/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/control_msgs_generate_messages_cpp.dir/build.make arm_dynamixel/CMakeFiles/control_msgs_generate_messages_cpp.dir/build
+.PHONY : control_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule
+.PHONY : arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+trajectory_msgs_generate_messages_nodejs: arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : trajectory_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+trajectory_msgs_generate_messages_nodejs/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/build.make arm_dynamixel/CMakeFiles/trajectory_msgs_generate_messages_nodejs.dir/build
+.PHONY : trajectory_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+arm_dynamixel/CMakeFiles/control_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/control_msgs_generate_messages_nodejs.dir/rule
+.PHONY : arm_dynamixel/CMakeFiles/control_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+control_msgs_generate_messages_nodejs: arm_dynamixel/CMakeFiles/control_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : control_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+control_msgs_generate_messages_nodejs/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/control_msgs_generate_messages_nodejs.dir/build.make arm_dynamixel/CMakeFiles/control_msgs_generate_messages_nodejs.dir/build
+.PHONY : control_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+arm_dynamixel/CMakeFiles/control_msgs_generate_messages_py.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/control_msgs_generate_messages_py.dir/rule
+.PHONY : arm_dynamixel/CMakeFiles/control_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+control_msgs_generate_messages_py: arm_dynamixel/CMakeFiles/control_msgs_generate_messages_py.dir/rule
+
+.PHONY : control_msgs_generate_messages_py
+
+# fast build rule for target.
+control_msgs_generate_messages_py/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/control_msgs_generate_messages_py.dir/build.make arm_dynamixel/CMakeFiles/control_msgs_generate_messages_py.dir/build
+.PHONY : control_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_nodejs.dir/rule:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f CMakeFiles/Makefile2 arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_nodejs.dir/rule
+.PHONY : arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+dynamixel_controllers_generate_messages_nodejs: arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_nodejs.dir/rule
+
+.PHONY : dynamixel_controllers_generate_messages_nodejs
+
+# fast build rule for target.
+dynamixel_controllers_generate_messages_nodejs/fast:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_nodejs.dir/build.make arm_dynamixel/CMakeFiles/dynamixel_controllers_generate_messages_nodejs.dir/build
+.PHONY : dynamixel_controllers_generate_messages_nodejs/fast
+
+src/joint_state_aggregator.o: src/joint_state_aggregator.cpp.o
+
+.PHONY : src/joint_state_aggregator.o
+
+# target to build an object file
+src/joint_state_aggregator.cpp.o:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/joint_state_aggregator.dir/build.make arm_dynamixel/CMakeFiles/joint_state_aggregator.dir/src/joint_state_aggregator.cpp.o
+.PHONY : src/joint_state_aggregator.cpp.o
+
+src/joint_state_aggregator.i: src/joint_state_aggregator.cpp.i
+
+.PHONY : src/joint_state_aggregator.i
+
+# target to preprocess a source file
+src/joint_state_aggregator.cpp.i:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/joint_state_aggregator.dir/build.make arm_dynamixel/CMakeFiles/joint_state_aggregator.dir/src/joint_state_aggregator.cpp.i
+.PHONY : src/joint_state_aggregator.cpp.i
+
+src/joint_state_aggregator.s: src/joint_state_aggregator.cpp.s
+
+.PHONY : src/joint_state_aggregator.s
+
+# target to generate assembly for a file
+src/joint_state_aggregator.cpp.s:
+	cd /home/ubuntu/dev/lrscp_ws/build && $(MAKE) -f arm_dynamixel/CMakeFiles/joint_state_aggregator.dir/build.make arm_dynamixel/CMakeFiles/joint_state_aggregator.dir/src/joint_state_aggregator.cpp.s
+.PHONY : src/joint_state_aggregator.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
-	@echo "... install/strip"
-	@echo "... control_msgs_generate_messages_py"
-	@echo "... control_msgs_generate_messages_nodejs"
-	@echo "... control_msgs_generate_messages_eus"
-	@echo "... control_msgs_generate_messages_cpp"
+	@echo "... install"
+	@echo "... trajectory_msgs_generate_messages_eus"
+	@echo "... diagnostic_msgs_generate_messages_nodejs"
 	@echo "... dynamixel_msgs_generate_messages_py"
-	@echo "... dynamixel_msgs_generate_messages_nodejs"
-	@echo "... dynamixel_msgs_generate_messages_lisp"
-	@echo "... dynamixel_msgs_generate_messages_eus"
-	@echo "... std_msgs_generate_messages_eus"
-	@echo "... dynamixel_controllers_generate_messages_py"
-	@echo "... roscpp_generate_messages_lisp"
+	@echo "... diagnostic_msgs_generate_messages_eus"
+	@echo "... trajectory_msgs_generate_messages_py"
+	@echo "... diagnostic_msgs_generate_messages_cpp"
 	@echo "... actionlib_msgs_generate_messages_py"
-	@echo "... roscpp_generate_messages_cpp"
 	@echo "... geometry_msgs_generate_messages_eus"
 	@echo "... actionlib_msgs_generate_messages_nodejs"
 	@echo "... actionlib_generate_messages_cpp"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
-	@echo "... diagnostic_msgs_generate_messages_eus"
-	@echo "... trajectory_msgs_generate_messages_py"
-	@echo "... install"
-	@echo "... std_msgs_generate_messages_lisp"
-	@echo "... geometry_msgs_generate_messages_lisp"
+	@echo "... dynamixel_msgs_generate_messages_nodejs"
 	@echo "... actionlib_msgs_generate_messages_lisp"
-	@echo "... edit_cache"
-	@echo "... dynamixel_controllers_generate_messages_nodejs"
-	@echo "... std_msgs_generate_messages_py"
-	@echo "... dynamixel_controllers_generate_messages_cpp"
-	@echo "... dynamixel_controllers_generate_messages_eus"
+	@echo "... rebuild_cache"
+	@echo "... list_install_components"
+	@echo "... diagnostic_msgs_generate_messages_lisp"
 	@echo "... geometry_msgs_generate_messages_py"
-	@echo "... std_msgs_generate_messages_nodejs"
-	@echo "... trajectory_msgs_generate_messages_eus"
-	@echo "... std_msgs_generate_messages_cpp"
+	@echo "... dynamixel_controllers_generate_messages_eus"
+	@echo "... diagnostic_msgs_generate_messages_py"
 	@echo "... actionlib_generate_messages_nodejs"
 	@echo "... actionlib_msgs_generate_messages_cpp"
-	@echo "... rosgraph_msgs_generate_messages_nodejs"
+	@echo "... dynamixel_controllers_generate_messages_cpp"
+	@echo "... dynamixel_controllers_generate_messages_py"
 	@echo "... actionlib_msgs_generate_messages_eus"
 	@echo "... actionlib_generate_messages_lisp"
+	@echo "... joint_state_aggregator"
 	@echo "... actionlib_generate_messages_eus"
-	@echo "... roscpp_generate_messages_py"
-	@echo "... actionlib_generate_messages_py"
+	@echo "... dynamixel_msgs_generate_messages_lisp"
 	@echo "... dynamixel_controllers_generate_messages_lisp"
-	@echo "... roscpp_generate_messages_nodejs"
-	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... rosgraph_msgs_generate_messages_eus"
-	@echo "... diagnostic_msgs_generate_messages_cpp"
-	@echo "... list_install_components"
-	@echo "... roscpp_generate_messages_eus"
-	@echo "... diagnostic_msgs_generate_messages_lisp"
-	@echo "... diagnostic_msgs_generate_messages_nodejs"
-	@echo "... rosgraph_msgs_generate_messages_py"
-	@echo "... diagnostic_msgs_generate_messages_py"
+	@echo "... actionlib_generate_messages_py"
 	@echo "... control_msgs_generate_messages_lisp"
 	@echo "... trajectory_msgs_generate_messages_lisp"
-	@echo "... install/local"
-	@echo "... trajectory_msgs_generate_messages_nodejs"
-	@echo "... test"
 	@echo "... trajectory_msgs_generate_messages_cpp"
+	@echo "... test"
 	@echo "... geometry_msgs_generate_messages_cpp"
+	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... geometry_msgs_generate_messages_nodejs"
+	@echo "... control_msgs_generate_messages_eus"
 	@echo "... dynamixel_msgs_generate_messages_cpp"
+	@echo "... dynamixel_msgs_generate_messages_eus"
+	@echo "... control_msgs_generate_messages_cpp"
+	@echo "... trajectory_msgs_generate_messages_nodejs"
+	@echo "... install/local"
+	@echo "... control_msgs_generate_messages_nodejs"
+	@echo "... control_msgs_generate_messages_py"
+	@echo "... install/strip"
+	@echo "... dynamixel_controllers_generate_messages_nodejs"
+	@echo "... edit_cache"
+	@echo "... src/joint_state_aggregator.o"
+	@echo "... src/joint_state_aggregator.i"
+	@echo "... src/joint_state_aggregator.s"
 .PHONY : help
 
 

@@ -117,8 +117,17 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/ubuntu/dev/lrscp_ws/build/gtest/cmake_install.cmake")
-  include("/home/ubuntu/dev/lrscp_ws/build/arm_moveit_config/cmake_install.cmake")
+  include("/home/ubuntu/dev/lrscp_ws/build/iai_kinect2/iai_kinect2/cmake_install.cmake")
+  include("/home/ubuntu/dev/lrscp_ws/build/trac_ik/trac_ik/cmake_install.cmake")
+  include("/home/ubuntu/dev/lrscp_ws/build/iai_kinect2/kinect2_registration/cmake_install.cmake")
   include("/home/ubuntu/dev/lrscp_ws/build/arm_dynamixel/cmake_install.cmake")
+  include("/home/ubuntu/dev/lrscp_ws/build/iai_kinect2/kinect2_bridge/cmake_install.cmake")
+  include("/home/ubuntu/dev/lrscp_ws/build/iai_kinect2/kinect2_calibration/cmake_install.cmake")
+  include("/home/ubuntu/dev/lrscp_ws/build/iai_kinect2/kinect2_viewer/cmake_install.cmake")
+  include("/home/ubuntu/dev/lrscp_ws/build/trac_ik/trac_ik_lib/cmake_install.cmake")
+  include("/home/ubuntu/dev/lrscp_ws/build/trac_ik/trac_ik_examples/cmake_install.cmake")
+  include("/home/ubuntu/dev/lrscp_ws/build/trac_ik/trac_ik_kinematics_plugin/cmake_install.cmake")
+  include("/home/ubuntu/dev/lrscp_ws/build/arm_moveit_config/cmake_install.cmake")
 
 endif()
 

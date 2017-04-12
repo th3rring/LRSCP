@@ -4,3 +4,6 @@ controller_list:
       - bottom_yaw
       - middle_pitch
       - top_pitch
+  - name: fake_ball_controller
+    joints:
+      []

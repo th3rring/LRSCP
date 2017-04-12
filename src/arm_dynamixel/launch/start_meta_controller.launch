@@ -19,6 +19,10 @@
 		    "
 	output="screen"/>
 
+<!-- Load robot URDF -->
+<param name="robot_description" textfile="$(find arm_description)/robots/arm_description.urdf" /> 
+
+
 
 <!-- Publish arm data -->
 	<include file="$(find arm_dynamixel)/launch/joint_state_aggregator.launch"/>
@@ -26,6 +30,9 @@
 		<rosparam param="source_list">[joint_states]</rosparam>
 		<rosparam param="use_gui">FALSE</rosparam>
 	</node>
+
+<!-- Home arm -->
+<node name="home_arm" pkg="arm_dynamixel" type="home_arm.py" output="screen"/>
 
 
 
