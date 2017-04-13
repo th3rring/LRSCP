@@ -18,8 +18,6 @@ int main(int argc, char **argv)
   ros::AsyncSpinner spinner(1);
   spinner.start();
 
-  // BEGIN_TUTORIAL
-  //
   // Setup
   // ^^^^^
   //
@@ -81,13 +79,15 @@ int main(int argc, char **argv)
   move_group.setPoseTarget(target_pose1);
   move_group.setGoalTolerance(0.1);
 
+  moveit::planning_interface::MoveGroupInterface::Plan my_plan;
+  
+  bool success = move_group.plan(my_plan);
+
   // Now, we call the planner to compute the plan and visualize it.
   // Note that we are just planning, not asking move_group
   // to actually move the robot.
-  moveit::planning_interface::MoveGroupInterface::Plan my_plan;
-
-  bool success = move_group.plan(my_plan);
-
+  
+  
   ROS_INFO_NAMED("tutorial", "Visualizing plan 1 (pose goal) %s", success ? "" : "FAILED");
 
   // Visualizing plans
